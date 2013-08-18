@@ -29,6 +29,6 @@ library
       Test.Framework.Providers.QuickCheck2
   build-depends:
       base    == 4.*
-    , hspec
+    , hspec   >= 1.6.0
     , QuickCheck
     , HUnit
