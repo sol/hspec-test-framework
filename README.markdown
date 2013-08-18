@@ -15,7 +15,7 @@ from the `build-depends` section of your cabal file and add
 
 in theire place.
 
-*NOTE:* The packages `hspec-test-framework` and `hspec-test-framework-th` are
+__NOTE:__ The packages `hspec-test-framework` and `hspec-test-framework-th` are
 hidden by default, so that they do not interfere with an installed version of
 `test-framework`.  If you want to use them with e.g. `ghci`, you have to pass
 the command-line flags
