@@ -1,1 +1,5 @@
 language: haskell
+
+script:
+  - cabal install
+  - cd hspec-test-framework-th/ && cabal install
