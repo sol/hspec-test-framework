@@ -2,13 +2,13 @@ module Test.Framework.Providers.HUnit where
 
 import           Test.HUnit (Assertion)
 import qualified Test.HUnit as HUnit
-import           Test.Hspec.Core
-import           Test.Hspec.HUnit
+import           Test.Hspec.Core.Spec
+import           Test.Hspec.Contrib.HUnit
 
 import           Test.Framework.Providers.API
 
 testCase :: TestName -> Assertion -> Test
-testCase = it
+testCase = specItem
 
 hUnitTestToTests :: HUnit.Test -> [Test]
-hUnitTestToTests = runSpecM . fromHUnitTest
+hUnitTestToTests = specListFromHUnitTest
