@@ -1,5 +1,5 @@
 language: haskell
 
 script:
-  - cabal install
-  - cd hspec-test-framework-th/ && cabal install
+  - (                              cabal install --only-dependencies --enable-tests && cabal configure --enable-tests --ghc-options=-Werror && cabal build && cabal test && cabal sdist && cabal install dist/hspec-*.tar.gz)
+  - (cd hspec-test-framework-th && cabal install --only-dependencies --enable-tests && cabal configure --enable-tests --ghc-options=-Werror && cabal build && cabal test && cabal sdist && cabal install dist/hspec-*.tar.gz)
