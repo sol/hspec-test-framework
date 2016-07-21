@@ -1,5 +1,5 @@
 name:             hspec-test-framework-th
-version:          0.1.0
+version:          0.1.1
 license:          MIT
 license-file:     LICENSE
 copyright:        (c) 2013 Simon Hengel
@@ -71,4 +71,18 @@ test-suite example
       base == 4.*
     , HUnit
     , hspec-test-framework
+    , hspec-test-framework-th
+
+test-suite tests
+  type:
+      exitcode-stdio-1.0
+  ghc-options:
+      -Wall
+  hs-source-dirs:
+      test
+  main-is:
+      Spec.hs
+  build-depends:
+      base == 4.*
+    , hspec
     , hspec-test-framework-th
