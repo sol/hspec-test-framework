@@ -15,7 +15,8 @@
 module Test.Framework.TH (
   defaultMainGenerator,
   defaultMainGenerator2,
-  testGroupGenerator
+  testGroupGenerator,
+  allSpecsGenerator
 ) where
 import Language.Haskell.TH
 import Language.Haskell.Extract 
@@ -119,3 +120,25 @@ fixName name = replace '_' ' ' $ drop 5 name
 
 replace :: Eq a => a -> a -> [a] -> [a]
 replace b v = map (\i -> if b == i then v else i)
+
+-- | Generate a function that runs all functions beginning with spec_.
+--
+--   Example:
+--
+--   > spec_foo = describe "foo" $ do
+--   >   it "should add stuff" $ do
+--   >     (3 + 4) `shouldBe` (7 :: Int)
+--   > spec_bar = describe "bar" $ do
+--   >   it "should know what's what" $ do
+--   >     "foo" `shouldNotBe` "bar"
+--   >
+--   > main = hspec $(allSpecsGenerator)
+--
+--   where the last line is equivalent to:
+--
+--   > main = hspec $ do
+--   >   spec_foo
+--   >   spec_bar
+--
+allSpecsGenerator :: ExpQ
+allSpecsGenerator = [| sequence_ . map snd $ $(functionExtractor "^spec_") |]
